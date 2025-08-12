@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,7 +31,6 @@ import androidx.compose.ui.unit.sp
 import java.util.Queue
 
 @Composable
-
 fun SearchBar(
     queue: String,
     onQueryChange: (String) -> Unit,
@@ -45,7 +45,9 @@ fun SearchBar(
         Row (modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically) {
             Icon(Icons.Default.Search, "Search", tint = Color.Gray)
+
             Spacer(modifier = Modifier.width(8.dp))
+
             TextField(
               value = queue,
               onValueChange = onQueryChange,
@@ -55,11 +57,19 @@ fun SearchBar(
                   Text("Search products...",
                   color = Color.Gray, fontSize = 16.sp)
               },
-                KeyboardOptions = KeyboardOptions(
+               KeyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Search
                 ),
                 KeyboardActions = KeyboardActions(
                     onSearch = {onSearch()}
+                ),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                    disabledContainerColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
                 )
             )
         }
